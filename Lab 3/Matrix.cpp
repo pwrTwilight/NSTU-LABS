@@ -310,33 +310,3 @@ void DynamicMatrix::ReadFromBinary(ifstream& file) {
 	file.close();
 
 }
-
-
-/*MyArray* loadFromBinaryFile(const char* filename) {
-	try {
-		std::ifstream ifstream(filename, std::ios::binary);
-		int countArrays;
-		ifstream.read((char*)(&countArrays), sizeof(countArrays));
-
-		MyArray* loadedArrays = new MyArray[countArrays];
-
-		for (int i = 0; i < countArrays; i++) {
-			int size, maxSize, currentIndex;
-			ifstream.read((char*)(&size), sizeof(size));
-			ifstream.read((char*)(&maxSize), sizeof(maxSize));
-			ifstream.read((char*)(&currentIndex), sizeof(currentIndex));
-
-			MyArray loadedArray(maxSize);
-			loadedArray.setSize(size);
-			loadedArray.setCurrentIndex(currentIndex);
-			ifstream.read((char*)(loadedArray.getArray()), sizeof(int) * size);
-			loadedArrays[i] = loadedArray;
-		}
-
-		ifstream.close();
-		return loadedArrays;
-	}
-	catch (std::exception& e) {
-		std::cout << "NullPointerException reading from binary file" << e.what() << std::endl;
-		return nullptr;
-}*/
