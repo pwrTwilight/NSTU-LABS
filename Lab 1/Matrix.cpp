@@ -1,6 +1,4 @@
 #include "Matrix.h"
-#include <iostream>
-#include <sstream>
 
 int DynamicMatrix::CountObjects = 0;
 
