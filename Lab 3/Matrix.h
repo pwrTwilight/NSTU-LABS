@@ -12,18 +12,18 @@ using namespace std;
 class DynamicMatrix 
 {
 public:
-	DynamicMatrix();
+	DynamicMatrix();	
 	DynamicMatrix(int rows, int cols);
 	DynamicMatrix(const DynamicMatrix& other);
 	~DynamicMatrix();
 
-	void WriteToBinary(ofstream& file);
-	void ReadFromBinary(ifstream& file);
 	void SortArrayX(int k);
 	void SortArrayY(int k);
 	int** FindElement(int x);
 	int ReplaceElement(int x, int y, int Number);
 
+	void WriteToBinary(ofstream& file);
+	void ReadFromBinary(ifstream& file);
 
 	DynamicMatrix Sum(const DynamicMatrix& other);
 	DynamicMatrix Sub(const DynamicMatrix& other);
@@ -33,8 +33,6 @@ public:
 	int* operator [] (int index);
 
 
-
-	static int getCountObject();
 	int GetRows();
 	int GetCols();
 	int GetElement(int rows, int cols);
@@ -43,7 +41,6 @@ public:
 
 private:
 	int** arr;
-	static int CountObjects;
 	int rows_;
 	int cols_;
 
@@ -52,5 +49,3 @@ private:
 	friend ostream& operator << (ostream& out, DynamicMatrix& matrix);
 	friend istream& operator >> (istream& in, DynamicMatrix& matrix);
 };
-
-
