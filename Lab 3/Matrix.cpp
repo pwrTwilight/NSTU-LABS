@@ -1,10 +1,6 @@
 #include "Matrix.h"
 
-int DynamicMatrix::CountObjects = 0;
-
-
 DynamicMatrix::DynamicMatrix(int rows, int cols) : rows_(rows), cols_(cols) {
-	CountObjects++;
 	arr = new int* [rows];
 
 	for (int i = 0; i < rows; i++) {
@@ -21,7 +17,6 @@ DynamicMatrix::DynamicMatrix(int rows, int cols) : rows_(rows), cols_(cols) {
 }
 
 DynamicMatrix::DynamicMatrix(const DynamicMatrix& other) : rows_(other.rows_), cols_(other.cols_) {
-	CountObjects++;
 	arr = new int* [rows_];
 
 	for (int i = 0; i < rows_; i++) {
@@ -46,7 +41,6 @@ DynamicMatrix::~DynamicMatrix() {
 	}
 
 	delete[] arr;
-	CountObjects--;
 }
 
 int DynamicMatrix::GetElement(int Rows, int Rols) {
@@ -58,10 +52,6 @@ int DynamicMatrix::GetRows() {
 
 int DynamicMatrix::GetCols() {
 	return cols_;
-}
-
-int DynamicMatrix::getCountObject() {
-	return CountObjects;
 }
 
 char* DynamicMatrix::ToString() {
@@ -244,6 +234,7 @@ ostream& operator << (ostream& out, DynamicMatrix& matrix) {
 istream& operator >> (istream& in, DynamicMatrix& matrix) {
 
 	in >> matrix.rows_ >> matrix.cols_;
+
 	matrix.arr = new int* [matrix.rows_];
 	for (int i = 0; i < matrix.rows_; ++i) {
 		matrix.arr[i] = new int[matrix.cols_];
@@ -260,8 +251,6 @@ istream& operator >> (istream& in, DynamicMatrix& matrix) {
 
 void DynamicMatrix::WriteToBinary(ofstream& file) {
 
-	file.open("Matrix.bin", ios::binary);
-
 	if (!file.is_open()) {
 
 		std::stringstream stream;
@@ -273,20 +262,13 @@ void DynamicMatrix::WriteToBinary(ofstream& file) {
 		file.write(reinterpret_cast<char*>(&cols_), sizeof(int));
 		for (int i = 0; i < rows_; i++) {
 
-				file.write(reinterpret_cast<char*> (arr[i]), cols_ * sizeof(int));
+				file.write(reinterpret_cast<char*>(arr[i]), cols_ * sizeof(int));
 		}
 	}
-
-	file.close();
-
-	
-
 
 }
 
 void DynamicMatrix::ReadFromBinary(ifstream& file) {
-
-	file.open("Matrix.bin", ios::binary);
 
 	if (!file.is_open()) {
 		std::stringstream stream;
@@ -306,7 +288,5 @@ void DynamicMatrix::ReadFromBinary(ifstream& file) {
 		}
 
 	}
-
-	file.close();
 
 }
